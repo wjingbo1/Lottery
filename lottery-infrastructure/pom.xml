@@ -16,4 +16,13 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+    </dependencies>
+
 </project>
