@@ -15,7 +15,7 @@ public class DrawBase extends DrawConfig {
     public void checkAndInitRateData(Long strategyId, Integer strategyMode, List<StrategyDetail> strategyDetailList) {
         // 1:总体概率 2:单体概率
         if (1 != strategyMode) return;
-        IDrawAlgorithm drawAlgorithm = drawAlgorithmMap.get(strategyMode);
+        IDrawAlgorithm drawAlgorithm = drawAlgorithmGroup.get(strategyMode);
 
         boolean existRateTuple = drawAlgorithm.isExistRateTuple(strategyId);
         if (existRateTuple) return;

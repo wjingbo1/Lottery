@@ -22,8 +22,8 @@ import java.util.List;
 @SpringBootTest
 public class DrawAlgorithmTest {
 
-    @Resource(name = "defaultRateRandomDrawAlgorithm")
-    //@Resource(name = "singleRateRandomDrawAlgorithm")
+    //@Resource(name = "defaultRateRandomDrawAlgorithm")
+    @Resource(name = "singleRateRandomDrawAlgorithm")
     private IDrawAlgorithm randomDrawAlgorithm;
 
     @Before
@@ -43,9 +43,9 @@ public class DrawAlgorithmTest {
     @Test
     public void test_randomDrawAlgorithm() {
 
-        List<String> excludeAwardIds = new ArrayList<>();
-        excludeAwardIds.add("33");
-        excludeAwardIds.add("44");
+        List<Long> excludeAwardIds = new ArrayList<>();
+        excludeAwardIds.add(33L);
+        excludeAwardIds.add(44L);
 
         for (int i = 0; i < 20; i++) {
             System.out.println("中奖结果：" + randomDrawAlgorithm.randomDraw(100001L, excludeAwardIds));

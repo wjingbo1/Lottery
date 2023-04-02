@@ -7,12 +7,12 @@ import lombok.Data;
 public class DrawReq {
 
     // 用户ID
-    private Long uId;
+    private String uId;
 
     // 策略ID
     private Long strategyId;
 
-    public DrawReq(Long uId, Long strategyId) {
+    public DrawReq(String uId, Long strategyId) {
         this.uId = uId;
         this.strategyId = strategyId;
     }

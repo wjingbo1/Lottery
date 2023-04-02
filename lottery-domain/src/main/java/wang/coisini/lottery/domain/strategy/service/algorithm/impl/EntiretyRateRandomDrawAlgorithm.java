@@ -10,17 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
- *
  * 必中奖策略抽奖，排掉已经中奖的概率，重新计算中奖范围
  */
-@Component("defaultRateRandomDrawAlgorithm")
-public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
+@Component("entiretyRateRandomDrawAlgorithm")
+public class EntiretyRateRandomDrawAlgorithm extends BaseAlgorithm {
 
     @Override
-    public String randomDraw(Long strategyId, List<String> excludeAwardIds) {
+    public Long randomDraw(Long strategyId, List<Long> excludeAwardIds) {
 
         BigDecimal differenceDenominator = BigDecimal.ZERO;
 
@@ -36,9 +32,15 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
             differenceDenominator = differenceDenominator.add(awardRateInfo.getAwardRate());
         }
 
-        // 前置判断
-        if (differenceAwardRateList.size() == 0) return "";
-        if (differenceAwardRateList.size() == 1) return differenceAwardRateList.get(0).getAwardId().toString();
+        // 前置判断：奖品列表为0，返回NULL
+        if (differenceAwardRateList.size() == 0) {
+            return null;
+        }
+
+        // 前置判断：奖品列表为1，直接返回
+        if (differenceAwardRateList.size() == 1) {
+            return differenceAwardRateList.get(0).getAwardId();
+        }
 
         // 获取随机概率值
         SecureRandom secureRandom = new SecureRandom();
@@ -57,7 +59,7 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
         }
 
         // 返回中奖结果
-        return awardId.toString();
+        return awardId;
     }
 
 }
