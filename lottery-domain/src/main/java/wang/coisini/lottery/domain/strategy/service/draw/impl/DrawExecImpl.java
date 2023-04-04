@@ -9,9 +9,7 @@ import wang.coisini.lottery.domain.strategy.service.algorithm.IDrawAlgorithm;
 import wang.coisini.lottery.domain.strategy.service.draw.AbstractDrawBase;
 import wang.coisini.lottery.domain.strategy.service.draw.DrawBase;
 import wang.coisini.lottery.domain.strategy.service.draw.IDrawExec;
-import wang.coisini.lottery.infrastructure.po.Award;
-import wang.coisini.lottery.infrastructure.po.Strategy;
-import wang.coisini.lottery.infrastructure.po.StrategyDetail;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

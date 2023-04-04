@@ -1,14 +1,15 @@
 package wang.coisini.lottery.domain.strategy.repository;
 
 import wang.coisini.lottery.domain.strategy.model.aggregates.StrategyRich;
-import wang.coisini.lottery.infrastructure.po.Award;
+import wang.coisini.lottery.domain.strategy.model.vo.AwardBriefVO;
+
 
 import java.util.List;
 
 public interface IStrategyRepository {
     StrategyRich queryStrategyRich(Long strategyId);
 
-    Award queryAwardInfo(Long awardId);
+    AwardBriefVO queryAwardInfo(Long awardId);
 
     List<Long> queryNoStockStrategyAwardList(Long strategyId);
 

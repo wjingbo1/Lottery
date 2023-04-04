@@ -1,8 +1,9 @@
 package wang.coisini.lottery.domain.strategy.service.draw;
 
 import wang.coisini.lottery.domain.strategy.model.aggregates.StrategyRich;
+import wang.coisini.lottery.domain.strategy.model.vo.AwardBriefVO;
 import wang.coisini.lottery.domain.strategy.repository.IStrategyRepository;
-import wang.coisini.lottery.infrastructure.po.Award;
+
 
 import javax.annotation.Resource;
 
@@ -33,7 +34,7 @@ public class DrawStrategySupport extends DrawConfig{
      * @param awardId 奖品ID
      * @return 中奖详情
      */
-    protected Award queryAwardInfoByAwardId(Long awardId){
+    protected AwardBriefVO queryAwardInfoByAwardId(Long awardId){
         return strategyRepository.queryAwardInfo(awardId);
     }
 
