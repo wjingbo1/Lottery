@@ -41,6 +41,18 @@ public class UserTakeActivity {
      * 领取次数
      */
     private Integer takeCount;
+
+    /**
+     * 策略ID
+     */
+    private Long strategyId;
+
+    /**
+     * 活动单使用状态 0未使用、1已使用
+     * Constants.TaskState
+     */
+    private Integer state;
+
     /**
      * 防重ID
      */

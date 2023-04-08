@@ -9,8 +9,10 @@ import wang.coisini.lottery.common.Constants;
 import wang.coisini.lottery.common.Result;
 import wang.coisini.lottery.domain.activity.model.req.PartakeReq;
 import wang.coisini.lottery.domain.activity.model.vo.ActivityBillVO;
+import wang.coisini.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import wang.coisini.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import wang.coisini.lottery.domain.activity.service.partake.BaseActivityPartake;
+import wang.coisini.lottery.domain.strategy.model.vo.DrawOrderVO;
 import wang.coisini.lottery.domain.support.ids.IIdGenerator;
 import wang.coisini.middleware.db.router.strategy.IDBRouterStrategy;
 
@@ -39,6 +41,12 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
 
     @Resource
     private IDBRouterStrategy dbRouter;
+
+    @Override
+    protected UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId) {
+        return userTakeActivityRepository.queryNoConsumedTakeActivityOrder(activityId, uId);
+    }
+
 
     @Override
     protected Result checkActivityBill(PartakeReq partake, ActivityBillVO bill) {
@@ -85,7 +93,7 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
     }
 
     @Override
-    protected Result grabActivity(PartakeReq partake, ActivityBillVO bill) {
+    protected Result grabActivity(PartakeReq partake, ActivityBillVO bill,Long takeId) {
         try {
             dbRouter.doRouter(partake.getUId());
             return transactionTemplate.execute(status -> {
@@ -99,7 +107,6 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
                     }
 
                     // 插入领取活动信息
-                    Long takeId = idGeneratorMap.get(Constants.Ids.SnowFlake).nextId();
                     userTakeActivityRepository.takeActivity(bill.getActivityId(), bill.getActivityName(), bill.getTakeCount(), bill.getUserTakeLeftCount(), partake.getUId(), partake.getPartakeDate(), takeId);
                 } catch (DuplicateKeyException e) {
                     status.setRollbackOnly();
@@ -111,5 +118,35 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
         } finally {
             dbRouter.clear();
         }
+    }
+
+
+    @Override
+    public Result recordDrawOrder(DrawOrderVO drawOrder) {
+        try {
+            dbRouter.doRouter(drawOrder.getUId());
+            return transactionTemplate.execute(status -> {
+                try {
+                    // 锁定活动领取记录
+                    int lockCount = userTakeActivityRepository.lockTackActivity(drawOrder.getUId(), drawOrder.getActivityId(), drawOrder.getTakeId());
+                    if (0 == lockCount) {
+                        status.setRollbackOnly();
+                        logger.error("记录中奖单，个人参与活动抽奖已消耗完 activityId：{} uId：{}", drawOrder.getActivityId(), drawOrder.getUId());
+                        return Result.buildResult(Constants.ResponseCode.NO_UPDATE);
+                    }
+
+                    // 保存抽奖信息
+                    userTakeActivityRepository.saveUserStrategyExport(drawOrder);
+                } catch (DuplicateKeyException e) {
+                    status.setRollbackOnly();
+                    logger.error("记录中奖单，唯一索引冲突 activityId：{} uId：{}", drawOrder.getActivityId(), drawOrder.getUId(), e);
+                    return Result.buildResult(Constants.ResponseCode.INDEX_DUP);
+                }
+                return Result.buildSuccessResult();
+            });
+        } finally {
+            dbRouter.clear();
+        }
+
     }
 }

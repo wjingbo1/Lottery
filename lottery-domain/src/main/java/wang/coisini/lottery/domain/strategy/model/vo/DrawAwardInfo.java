@@ -3,8 +3,10 @@ package wang.coisini.lottery.domain.strategy.model.vo;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
- * @description:
+ * @description: 中奖奖品信息
  * @author：w_jingbo
  * @date: 2023/4/1
  * @Copyright： 博客：http://coisini.wang
@@ -33,6 +35,15 @@ public class DrawAwardInfo {
      */
     private String awardContent;
 
+    /**
+     * 发放奖品方式（1:即时、2:定时[含活动结束]、3:人工）
+     */
+    private Integer grantType;
+    /**
+     * 发奖时间
+     */
+    private Date grantDate;
+
     public DrawAwardInfo() {
     }
 
@@ -41,6 +52,15 @@ public class DrawAwardInfo {
         this.awardType = awardType;
         this.awardName = awardName;
         this.awardContent = awardContent;
+    }
+
+    public DrawAwardInfo(Long awardId, Integer awardType, String awardName, String awardContent, Integer grantType, Date grantDate) {
+        this.awardId = awardId;
+        this.awardType = awardType;
+        this.awardName = awardName;
+        this.awardContent = awardContent;
+        this.grantType = grantType;
+        this.grantDate = grantDate;
     }
 
 
