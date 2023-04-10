@@ -1,6 +1,7 @@
 package wang.coisini.lottery.infrastructure.repository;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import wang.coisini.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import wang.coisini.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import wang.coisini.lottery.domain.strategy.model.vo.DrawOrderVO;
@@ -21,7 +22,7 @@ import java.util.Date;
  * @Copyright: 博客：http://coisini.wang
  */
 
-@Component
+@Repository
 public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
     @Resource

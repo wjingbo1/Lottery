@@ -2,6 +2,7 @@ package wang.coisini.lottery.infrastructure.repository;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import wang.coisini.lottery.common.Constants;
 import wang.coisini.lottery.domain.activity.model.req.PartakeReq;
 import wang.coisini.lottery.domain.activity.model.vo.*;
@@ -19,7 +20,7 @@ import java.util.List;
  * @date: 2023/4/3
  * @Copyright: 博客：http://coisini.wang
  */
-@Component
+@Repository
 public class ActivityRepository implements IActivityRepository {
 
 

@@ -2,6 +2,7 @@ package wang.coisini.lottery.infrastructure.repository;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import wang.coisini.lottery.domain.strategy.model.aggregates.StrategyRich;
 import wang.coisini.lottery.domain.strategy.model.vo.AwardBriefVO;
 import wang.coisini.lottery.domain.strategy.model.vo.StrategyBriefVO;
@@ -24,7 +25,7 @@ import java.util.List;
  * @date: 2023/4/3
  * @Copyright: 博客：http://coisini.wang
  */
-@Component
+@Repository
 public class StrategyRepository implements IStrategyRepository {
 
     @Resource
