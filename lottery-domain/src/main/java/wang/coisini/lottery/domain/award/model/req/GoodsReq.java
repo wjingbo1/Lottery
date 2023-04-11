@@ -19,7 +19,7 @@ public class GoodsReq {
     private String uId;
 
     /** 抽奖单号 ID */
-    private String orderId;
+    private Long orderId;
 
     /** 奖品ID */
     private Long awardId;
@@ -40,7 +40,7 @@ public class GoodsReq {
     /** 扩展信息，用于一些个性商品发放所需要的透传字段内容 */
     private String extInfo;
 
-    public GoodsReq(String uId, String orderId, Long awardId, String awardName, String awardContent) {
+    public GoodsReq(String uId, Long orderId, Long awardId, String awardName, String awardContent) {
         this.uId = uId;
         this.orderId = orderId;
         this.awardId = awardId;

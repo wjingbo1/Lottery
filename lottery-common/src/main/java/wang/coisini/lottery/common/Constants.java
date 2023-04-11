@@ -366,7 +366,7 @@ public class Constants {
     /**
      * 发奖状态 0初始、1完成、2失败
      */
-    public enum GrantState{
+    public enum GrantState {
 
         INIT(0, "初始"),
         COMPLETE(1, "完成"),
@@ -376,6 +376,39 @@ public class Constants {
         private String info;
 
         GrantState(Integer code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
+        }
+    }
+
+    /**
+     * 消息发送状态（0未发送、1发送成功、2发送失败）
+     */
+    public enum MQState {
+        INIT(0, "初始"),
+        COMPLETE(1, "完成"),
+        FAIL(2, "失败");
+
+        private Integer code;
+        private String info;
+
+        MQState(Integer code, String info) {
             this.code = code;
             this.info = info;
         }

@@ -39,6 +39,8 @@ public class UserStrategyExport {
     private String awardName;
     /** 奖品内容「文字描述、Key、码」 */
     private String awardContent;
+    /** 消息发送状态（0未发送、1发送成功、2发送失败） */
+    private Integer MqState;
     /** 防重ID */
     private String uuid;
     /** 创建时间 */

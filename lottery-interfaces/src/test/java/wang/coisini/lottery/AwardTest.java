@@ -50,7 +50,7 @@ public class AwardTest {
         }
 
         DrawAwardVO drawAwardInfo = drawResult.getDrawAwardVO();
-        GoodsReq goodsReq = new GoodsReq(drawResult.getUId(),"213612734628",drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(),drawAwardInfo.getAwardContent());
+        GoodsReq goodsReq = new GoodsReq(drawResult.getUId(),213612734628L,drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(),drawAwardInfo.getAwardContent());
 
         IDistributionGoods distributionGoodsService = distributionGoodsFactory.getDistributionGoodsService(drawAwardInfo.getAwardType());
         DistributionRes distributionRes = distributionGoodsService.doDistribution(goodsReq);
