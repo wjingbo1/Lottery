@@ -14,8 +14,8 @@ import wang.coisini.lottery.domain.award.service.goods.IDistributionGoods;
 import wang.coisini.lottery.domain.strategy.model.req.DrawReq;
 import wang.coisini.lottery.domain.strategy.model.res.DrawResult;
 import wang.coisini.lottery.domain.strategy.model.vo.DrawAwardInfo;
+import wang.coisini.lottery.domain.strategy.model.vo.DrawAwardVO;
 import wang.coisini.lottery.domain.strategy.service.draw.IDrawExec;
-import wang.coisini.lottery.domain.strategy.service.draw.impl.DrawExecImpl;
 
 import javax.annotation.Resource;
 
@@ -49,7 +49,7 @@ public class AwardTest {
             return;
         }
 
-        DrawAwardInfo drawAwardInfo = drawResult.getDrawAwardInfo();
+        DrawAwardVO drawAwardInfo = drawResult.getDrawAwardVO();
         GoodsReq goodsReq = new GoodsReq(drawResult.getUId(),"213612734628",drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(),drawAwardInfo.getAwardContent());
 
         IDistributionGoods distributionGoodsService = distributionGoodsFactory.getDistributionGoodsService(drawAwardInfo.getAwardType());

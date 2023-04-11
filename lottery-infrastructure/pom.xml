@@ -35,6 +35,7 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>wang.coisini</groupId>
             <artifactId>db-router-spring-boot-starter</artifactId>

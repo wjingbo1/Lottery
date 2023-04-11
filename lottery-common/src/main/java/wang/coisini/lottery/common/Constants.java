@@ -1,10 +1,10 @@
 package wang.coisini.lottery.common;
 
 /**
- * @description:
- * @author：w_jingbo
- * @date: 2023/4/1
- * @Copyright： 博客：http://coisini.wang
+ * @description: 枚举信息定义
+ * @author：小傅哥，微信：fustack
+ * @date: 2021/8/28
+ * @Copyright：公众号：bugstack虫洞栈 | 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
  */
 public class Constants {
 
@@ -14,7 +14,8 @@ public class Constants {
         ILLEGAL_PARAMETER("0002", "非法参数"),
         INDEX_DUP("0003", "主键冲突"),
         NO_UPDATE("0004", "SQL操作无更新"),
-        LOSING_DRAW("D001", "未中奖");
+        LOSING_DRAW("D001", "未中奖"),
+        RULE_ERR("D002", "量化人群规则执行失败");
 
         private String code;
         private String info;
@@ -33,7 +34,6 @@ public class Constants {
         }
 
     }
-
 
     /**
      * 全局属性
@@ -71,6 +71,68 @@ public class Constants {
         public static final int ENUM = 6;
     }
 
+    /**
+     * 活动状态：1编辑、2提审、3撤审、4通过、5运行(审核通过后worker扫描状态)、6拒绝、7关闭、8开启
+     */
+    public enum ActivityState {
+
+        /**
+         * 1：编辑
+         */
+        EDIT(1, "编辑"),
+        /**
+         * 2：提审
+         */
+        ARRAIGNMENT(2, "提审"),
+        /**
+         * 3：撤审
+         */
+        REVOKE(3, "撤审"),
+        /**
+         * 4：通过
+         */
+        PASS(4, "通过"),
+        /**
+         * 5：运行(活动中)
+         */
+        DOING(5, "运行(活动中)"),
+        /**
+         * 6：拒绝
+         */
+        REFUSE(6, "拒绝"),
+        /**
+         * 7：关闭
+         */
+        CLOSE(7, "关闭"),
+        /**
+         * 8：开启
+         */
+        OPEN(8, "开启");
+
+        private Integer code;
+        private String info;
+
+        ActivityState(Integer code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
+        }
+    }
 
     /**
      * 抽奖策略模式：总体概率、单项概率
@@ -122,7 +184,7 @@ public class Constants {
         /**
          * 未中奖
          */
-        FAIL(0,"未中奖"),
+        FAIL(0, "未中奖"),
 
         /**
          * 已中奖
@@ -132,7 +194,7 @@ public class Constants {
         /**
          * 兜底奖
          */
-        Cover(2,"兜底奖");
+        Cover(2, "兜底奖");
 
         private Integer code;
         private String info;
@@ -158,7 +220,6 @@ public class Constants {
             this.info = info;
         }
     }
-
 
     /**
      * 发奖状态：0等待发奖、1发奖成功、2发奖失败
@@ -251,64 +312,21 @@ public class Constants {
         }
     }
 
-
-    /**
-     * 活动状态：1编辑、2提审、3撤审、4通过、5运行(审核通过后worker扫描状态)、6拒绝、7关闭、8开启
-     */
-    public enum ActivityState {
-
-        /** 1：编辑 */
-        EDIT(1, "编辑"),
-        /** 2：提审 */
-        ARRAIGNMENT(2, "提审"),
-        /** 3：撤审 */
-        REVOKE(3, "撤审"),
-        /** 4：通过 */
-        PASS(4, "通过"),
-        /** 5：运行(活动中) */
-        DOING(5, "运行(活动中)"),
-        /** 6：拒绝 */
-        REFUSE(6, "拒绝"),
-        /** 7：关闭 */
-        CLOSE(7, "关闭"),
-        /** 8：开启 */
-        OPEN(8, "开启");
-
-        private Integer code;
-        private String info;
-
-        ActivityState(Integer code, String info) {
-            this.code = code;
-            this.info = info;
-        }
-
-        public Integer getCode() {
-            return code;
-        }
-
-        public void setCode(Integer code) {
-            this.code = code;
-        }
-
-        public String getInfo() {
-            return info;
-        }
-
-        public void setInfo(String info) {
-            this.info = info;
-        }
-    }
-
-
     /**
      * Ids 生成策略枚举
      */
     public enum Ids {
-        /** 雪花算法 */
+        /**
+         * 雪花算法
+         */
         SnowFlake,
-        /** 日期算法 */
+        /**
+         * 日期算法
+         */
         ShortCode,
-        /** 随机算法 */
+        /**
+         * 随机算法
+         */
         RandomNumeric;
     }
 
@@ -378,6 +396,5 @@ public class Constants {
             this.info = info;
         }
     }
-
 
 }

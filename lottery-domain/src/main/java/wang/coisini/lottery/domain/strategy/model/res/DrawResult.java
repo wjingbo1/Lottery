@@ -3,6 +3,7 @@ package wang.coisini.lottery.domain.strategy.model.res;
 import lombok.Data;
 import wang.coisini.lottery.common.Constants;
 import wang.coisini.lottery.domain.strategy.model.vo.DrawAwardInfo;
+import wang.coisini.lottery.domain.strategy.model.vo.DrawAwardVO;
 
 @Data
 public class DrawResult {
@@ -25,7 +26,7 @@ public class DrawResult {
     /**
      * 中奖奖品信息
      */
-    private DrawAwardInfo drawAwardInfo;
+    private DrawAwardVO drawAwardVO;
 
     public DrawResult() {
     }
@@ -36,10 +37,10 @@ public class DrawResult {
         this.drawState = drawState;
     }
 
-    public DrawResult(String uId, Long strategyId, Integer drawState, DrawAwardInfo drawAwardInfo) {
+    public DrawResult(String uId, Long strategyId, Integer drawState, DrawAwardVO drawAwardVO) {
         this.uId = uId;
         this.strategyId = strategyId;
         this.drawState = drawState;
-        this.drawAwardInfo = drawAwardInfo;
+        this.drawAwardVO = drawAwardVO;
     }
 }
