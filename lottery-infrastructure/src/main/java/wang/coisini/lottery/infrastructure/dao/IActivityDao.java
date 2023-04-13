@@ -4,6 +4,8 @@ import wang.coisini.lottery.domain.activity.model.vo.AlterStateVO;
 import wang.coisini.lottery.infrastructure.po.Activity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
  * 公众号：bugstack虫洞栈
@@ -41,5 +43,13 @@ public interface IActivityDao {
     * @return 更新数量
     */
    int subtractionActivityStock(Long activityId);
+
+   /**
+    * 扫描待处理的活动列表，状态为：通过、活动中
+    *
+    * @param id ID
+    * @return 待处理的活动集合
+    */
+   List<Activity> scanToDoActivityList(Long id);
 
 }

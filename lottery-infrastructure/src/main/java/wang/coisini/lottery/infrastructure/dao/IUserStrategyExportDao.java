@@ -5,6 +5,8 @@ import wang.coisini.lottery.infrastructure.po.UserStrategyExport;
 import wang.coisini.middleware.db.router.annotation.DBRouter;
 import wang.coisini.middleware.db.router.annotation.DBRouterStrategy;
 
+import java.util.List;
+
 /**
  * @description: 用户策略计算结果表DAO
  * @author: w_jingbo
@@ -44,4 +46,12 @@ public interface IUserStrategyExportDao {
      */
     @DBRouter
     void updateInvoiceMqState(UserStrategyExport userStrategyExport);
+
+
+    /**
+     * 扫描发货单 MQ 状态，把未发送 MQ 的单子扫描出来，做补偿
+     *
+     * @return 发货单
+     */
+    List<UserStrategyExport> scanInvoiceMqState();
 }
